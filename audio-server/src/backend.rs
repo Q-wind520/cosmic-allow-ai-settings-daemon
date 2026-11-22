@@ -389,7 +389,7 @@ impl Model {
                     self.pipewire_send(pipewire::Request::SetRoute(
                         device_id,
                         card_profile_device,
-                        route.device as u32,
+                        route.index as u32,
                         save,
                     ));
                 }
@@ -425,11 +425,11 @@ impl Model {
                     .iter()
                     .find(|r| r.device as u32 == card_profile_device)
             {
-                tracing::debug!(target: "audio-backend", "set route of {device_id} to {card_profile_device} {}", route.device);
+                tracing::debug!(target: "audio-backend", "set route of {device_id} to {card_profile_device} {}", route.index);
                 self.pipewire_send(pipewire::Request::SetRoute(
                     device_id,
                     card_profile_device,
-                    route.device as u32,
+                    route.index as u32,
                     save,
                 ));
             }
